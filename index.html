@@ -142,6 +142,45 @@
       transition: left 0.5s ease;
     }
     .service-card:hover::before { left: 100%; }
+    
+    /* Success Page Animations */
+    @keyframes checkmark {
+      0% { stroke-dashoffset: 100; }
+      100% { stroke-dashoffset: 0; }
+    }
+    
+    .checkmark-circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      animation: checkmark 0.8s ease-in-out forwards;
+    }
+    
+    .checkmark-check {
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: checkmark 0.4s 0.6s ease-in-out forwards;
+    }
+    
+    @keyframes fadeInScale {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    
+    .success-content {
+      animation: fadeInScale 0.6s ease-out forwards;
+    }
+    
+    @keyframes confetti {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+    
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      animation: confetti 3s ease-out forwards;
+    }
   </style>
 </head>
 <body class="font-sans antialiased bg-white text-gray-900">
@@ -220,6 +259,66 @@
         </div>
       </div>
     </nav>
+
+    <!-- SUCCESS/THANK YOU PAGE -->
+    <div id="page-success" class="page">
+      <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0 bg-gradient-to-br from-brand via-brand-light to-brand"></div>
+        
+        <!-- Confetti Container -->
+        <div id="confetti-container" class="absolute inset-0 z-10 overflow-hidden pointer-events-none"></div>
+        
+        <div class="relative z-20 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
+          <div class="success-content">
+            <!-- Success Icon -->
+            <div class="mb-8">
+              <svg class="w-32 h-32 mx-auto" viewBox="0 0 100 100">
+                <circle class="checkmark-circle" cx="50" cy="50" r="45" fill="none" stroke="#c9a962" stroke-width="4"/>
+                <path class="checkmark-check" d="M30 50 L45 65 L70 35" fill="none" stroke="#c9a962" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white mb-6">
+              Thank You!
+            </h1>
+            
+            <div class="w-24 h-1 bg-gold mx-auto mb-8 rounded-full"></div>
+            
+            <p class="text-xl sm:text-2xl text-white/90 mb-6 max-w-xl mx-auto leading-relaxed">
+              Your message has been sent successfully.
+            </p>
+            
+            <p class="text-lg text-white/70 mb-10 max-w-lg mx-auto">
+              We appreciate you reaching out to Green Marbles PR & Publishing. Our team will review your message and get back to you within 24-48 hours.
+            </p>
+            
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 mb-10 max-w-md mx-auto">
+              <div class="flex items-center justify-center gap-4 mb-4">
+                <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <span class="text-white/80 text-sm">We'll respond via email</span>
+              </div>
+              <p class="text-gold font-semibold text-lg">greenmarblesauthorspr@gmail.com</p>
+            </div>
+            
+            <p class="text-gold italic mb-10 text-lg">"Where Stories Find Their Readers"</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="#" onclick="showPage('home')" class="inline-flex items-center justify-center px-8 py-4 bg-gold hover:bg-gold-light text-brand font-semibold text-lg rounded-full shadow-xl transition-all hover:scale-105">
+                Back to Home
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+              </a>
+              <a href="#" onclick="showPage('contact')" class="inline-flex items-center justify-center px-8 py-4 border-2 border-white/30 text-white hover:bg-white/10 text-lg rounded-full transition-all">
+                Send Another Message
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
 
     <!-- HOME PAGE -->
     <div id="page-home" class="page active">
@@ -651,6 +750,7 @@
                 <input type="hidden" name="_subject" value="New inquiry from Green Marbles website">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="https://greenmarblespr.github.io/?success=true">
                 
                 <div class="grid md:grid-cols-2 gap-6">
                   <div>
@@ -759,6 +859,7 @@
   <!-- JAVASCRIPT -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Loading screen particles
       const particlesContainer = document.getElementById('particles');
       for (let i = 0; i < 20; i++) {
         const particle = document.createElement('div');
@@ -775,7 +876,30 @@
         loadingScreen.classList.add('fade-out');
         mainContent.style.opacity = '1';
       }, 2500);
+      
+      // Check for success message after form submission
+      if (window.location.search.includes('success=true')) {
+        showPage('success');
+        createConfetti();
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
     });
+    
+    function createConfetti() {
+      const container = document.getElementById('confetti-container');
+      const colors = ['#c9a962', '#dfc585', '#0d4a3a', '#1a6b54', '#ffffff'];
+      
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.top = '-10px';
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDelay = Math.random() * 2 + 's';
+        confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
+        container.appendChild(confetti);
+      }
+    }
     
     function showPage(pageId) {
       document.querySelectorAll('.page').forEach(page => { page.classList.remove('active'); });
