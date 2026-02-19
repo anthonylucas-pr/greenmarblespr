@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Green Marbles PR & Publishing | Where Stories Find Their Readers</title>
+  <meta name="description" content="Expert BookTok promotion and comprehensive book publishing services.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#0d4a3a',
+            'brand-light': '#1a6b54',
+            'brand-dark': '#083028',
+            gold: '#c9a962',
+            'gold-light': '#dfc585',
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    
+    #loading-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #0d4a3a 0%, #083028 50%, #0d4a3a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    
+    #loading-screen.fade-out { opacity: 0; visibility: hidden; }
+    
+    .logo-container { text-align: center; animation: logoReveal 1.5s ease-out forwards; }
+    
+    @keyframes logoReveal {
+      0% { opacity: 0; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.05); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    
+    .logo-glow { animation: glowPulse 2s ease-in-out infinite; }
+    
+    @keyframes glowPulse {
+      0%, 100% { filter: drop-shadow(0 0 20px rgba(201, 169, 98, 0.5)); }
+      50% { filter: drop-shadow(0 0 40px rgba(201, 169, 98, 0.8)); }
+    }
+    
+    .loading-bar-container {
+      width: 200px; height: 3px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      margin-top: 30px;
+      overflow: hidden;
+    }
+    
+    .loading-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #c9a962, #dfc585, #c9a962);
+      border-radius: 10px;
+      animation: loadingProgress 2s ease-in-out forwards;
+    }
+    
+    @keyframes loadingProgress { 0% { width: 0%; } 100% { width: 100%; } }
+    
+    .loading-text {
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      margin-top: 15px;
+      animation: textFade 1s ease-in-out infinite alternate;
+    }
+    
+    @keyframes textFade { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+    
+    .particles {
+      position: absolute;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 4px; height: 4px;
+      background: rgba(201, 169, 98, 0.6);
+      border-radius: 50%;
+      animation: floatParticle 4s ease-in-out infinite;
+    }
+    
+    @keyframes floatParticle {
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+    }
+    
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    
+    .animate-float { animation: float 3s ease-in-out infinite; }
+    .animate-bounce-slow { animation: bounce 2s ease-in-out infinite; }
+    
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #c9a962 0%, #dfc585 50%, #c9a962 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(13, 74, 58, 0.15); }
+    
+    .page { display: none; }
+    .page.active { display: block; }
+    
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #0d4a3a; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #1a6b54; }
+    
+    .service-card { position: relative; overflow: hidden; }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    .service-card:hover::before { left: 100%; }
+  </style>
+</head>
+<body class="font-sans antialiased bg-white text-gray-900">
+
+  <!-- LOADING SCREEN -->
+  <div id="loading-screen">
+    <div class="particles" id="particles"></div>
+    <div class="logo-container">
+      <div class="logo-glow mb-6">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto">
+          <circle cx="60" cy="60" r="58" fill="#0d4a3a" stroke="#c9a962" stroke-width="2"/>
+          <g transform="translate(25, 75)">
+            <path d="M0 0 Q17 -8 35 0 L35 25 Q17 17 0 25 Z" fill="#c9a962"/>
+            <path d="M35 0 Q52 -8 70 0 L70 25 Q52 17 35 25 Z" fill="#dfc585"/>
+            <line x1="35" y1="0" x2="35" y2="25" stroke="#0d4a3a" stroke-width="2"/>
+          </g>
+          <g transform="translate(30, 15)">
+            <path d="M0 10 Q0 0 10 0 L50 0 Q60 0 60 10 L60 35 Q60 45 50 45 L35 45 L30 55 L25 45 L10 45 Q0 45 0 35 Z" fill="white" stroke="#c9a962" stroke-width="2"/>
+            <rect x="10" y="30" width="6" height="10" fill="#0d4a3a" rx="1"/>
+            <rect x="20" y="22" width="6" height="18" fill="#0d4a3a" rx="1"/>
+            <rect x="30" y="15" width="6" height="25" fill="#1a6b54" rx="1"/>
+            <rect x="40" y="8" width="6" height="32" fill="#c9a962" rx="1"/>
+            <path d="M12 35 L30 18 L48 10" stroke="#c9a962" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+      <h2 class="text-white text-2xl font-display font-semibold mb-1">Green Marbles</h2>
+      <p class="text-gold text-sm tracking-widest uppercase">PR & Publishing</p>
+      <div class="loading-bar-container mx-auto"><div class="loading-bar"></div></div>
+      <p class="loading-text">Loading your experience...</p>
+    </div>
+  </div>
+
+  <!-- MAIN WEBSITE -->
+  <div id="main-content" style="opacity: 0; transition: opacity 0.5s ease;">
+    
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 lg:h-20">
+          <a href="#" onclick="showPage('home')" class="flex items-center gap-3 group">
+            <div class="flex flex-col">
+              <span class="font-display font-bold text-brand text-xl leading-tight">Green Marbles</span>
+              <span class="text-xs text-gold tracking-widest uppercase">PR & Publishing</span>
+            </div>
+          </a>
+          <div class="hidden lg:flex items-center gap-1">
+            <a href="#" onclick="showPage('home')" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-all" data-page="home">Home</a>
+            <a href="#" onclick="showPage('promotion')" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-all" data-page="promotion">Promotion</a>
+            <a href="#" onclick="showPage('publishing')" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-all" data-page="publishing">Publishing</a>
+            <a href="#" onclick="showPage('about')" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-all" data-page="about">About</a>
+            <a href="#" onclick="showPage('portfolio')" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-all" data-page="portfolio">Portfolio</a>
+            <a href="#" onclick="showPage('contact')" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-all" data-page="contact">Contact</a>
+          </div>
+          <a href="#" onclick="showPage('home')" class="flex items-center">
+            <img src="logo.png" alt="Green Marbles Logo" class="h-12 w-auto" onerror="this.style.display='none'">
+          </a>
+          <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
+            <svg id="menu-icon" class="w-6 h-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg id="close-icon" class="w-6 h-6 text-brand hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-gray-100">
+        <div class="px-4 py-4 space-y-2">
+          <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-600 hover:text-brand hover:bg-gray-100">Home</a>
+          <a href="#" onclick="showPage('promotion'); toggleMobileMenu()" class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-600 hover:text-brand hover:bg-gray-100">Promotion</a>
+          <a href="#" onclick="showPage('publishing'); toggleMobileMenu()" class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-600 hover:text-brand hover:bg-gray-100">Publishing</a>
+          <a href="#" onclick="showPage('about'); toggleMobileMenu()" class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-600 hover:text-brand hover:bg-gray-100">About</a>
+          <a href="#" onclick="showPage('portfolio'); toggleMobileMenu()" class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-600 hover:text-brand hover:bg-gray-100">Portfolio</a>
+          <a href="#" onclick="showPage('contact'); toggleMobileMenu()" class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-600 hover:text-brand hover:bg-gray-100">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="page-home" class="page active">
+      <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0 bg-gradient-to-br from-brand via-brand-light to-brand"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-brand/80 via-brand/70 to-brand/90"></div>
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
+          <div class="mb-8 animate-float">
+            <div class="w-28 h-28 sm:w-36 sm:h-36 mx-auto relative">
+              <img src="logo.png" alt="Green Marbles Logo" class="w-full h-full object-contain logo-glow" onerror="this.style.display='none'">
+            </div>
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white mb-4">
+            Where Stories Find <span class="text-gold-gradient">Their Readers</span>
+          </h1>
+          <p class="text-xl sm:text-2xl text-white/90 mb-4 max-w-3xl mx-auto">
+            Your trusted partner for BookTok Promotion & Professional Publishing Services
+          </p>
+          <p class="text-lg text-gold mb-10 italic">Green Marbles PR & Publishing</p>
+          
+          <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
+            <div class="service-card bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all cursor-pointer group" onclick="showPage('promotion')">
+              <div class="w-16 h-16 rounded-full bg-gold flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                <svg class="w-8 h-8 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-display font-semibold text-white mb-3">BookTok Promotion</h3>
+              <p class="text-white/80 mb-6">Strategic marketing campaigns that connect your book with passionate readers on TikTok's biggest book community.</p>
+              <span class="inline-flex items-center text-gold font-medium">Explore Promotion Services <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+            </div>
+            <div class="service-card bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all cursor-pointer group" onclick="showPage('publishing')">
+              <div class="w-16 h-16 rounded-full bg-gold flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                <svg class="w-8 h-8 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-display font-semibold text-white mb-3">Publishing Services</h3>
+              <p class="text-white/80 mb-6">Full-service publishing support from manuscript to market. Editing, design, formatting, and distribution.</p>
+              <span class="inline-flex items-center text-gold font-medium">Explore Publishing Services <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+            </div>
+          </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+          <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center pt-2">
+            <div class="w-1 h-3 bg-white/70 rounded-full animate-bounce-slow"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div><div class="text-4xl font-bold text-brand mb-2">500+</div><div class="text-gray-600">Authors Helped</div></div>
+            <div><div class="text-4xl font-bold text-brand mb-2">150+</div><div class="text-gray-600">Books Published</div></div>
+            <div><div class="text-4xl font-bold text-brand mb-2">340%</div><div class="text-gray-600">Average Sales Growth</div></div>
+            <div><div class="text-4xl font-bold text-brand mb-2">10M+</div><div class="text-gray-600">Reader Reach</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-display font-bold text-brand mb-4">Why Authors Choose Green Marbles</h2>
+          </div>
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+              <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-6">
+                <svg class="w-7 h-7 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+              </div>
+              <h3 class="text-xl font-semibold text-brand mb-3">Reader-First Approach</h3>
+              <p class="text-gray-600">We connect your book with readers who will genuinely love it.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+              <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-6">
+                <svg class="w-7 h-7 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </div>
+              <h3 class="text-xl font-semibold text-brand mb-3">All-in-One Solution</h3>
+              <p class="text-gray-600">From manuscript editing to BookTok marketing, we handle everything.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+              <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-6">
+                <svg class="w-7 h-7 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </div>
+              <h3 class="text-xl font-semibold text-brand mb-3">Proven Results</h3>
+              <p class="text-gray-600">Our authors see real growth in sales and reader communities.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20 bg-gradient-to-b from-brand to-brand-dark">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-white mb-6">Ready to Start Your Journey?</h2>
+          <p class="text-xl text-white/80 mb-8">Whether you need promotion, publishing, or both - we're here to help.</p>
+          <a href="#" onclick="showPage('contact')" class="inline-flex items-center justify-center px-8 py-4 bg-gold hover:bg-gold-light text-brand font-semibold text-lg rounded-full shadow-xl transition-all hover:scale-105">Get Started Today <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
+      </section>
+    </div>
+
+    <!-- PROMOTION PAGE -->
+    <div id="page-promotion" class="page">
+      <section class="relative py-32 bg-gradient-to-br from-brand via-brand-light to-brand overflow-hidden">
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div class="w-20 h-20 rounded-full bg-gold flex items-center justify-center mx-auto mb-8">
+            <svg class="w-10 h-10 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white mb-6">BookTok <span class="text-gold-gradient">Promotion</span></h1>
+          <p class="text-xl sm:text-2xl text-white/90 max-w-3xl mx-auto">Strategic marketing campaigns that connect your book with millions of passionate readers on TikTok</p>
+        </div>
+      </section>
+
+      <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 class="text-3xl sm:text-4xl font-display font-bold text-brand mb-6">What is BookTok?</h2>
+              <div class="space-y-4 text-gray-600 leading-relaxed">
+                <p>BookTok is TikTok's massive book community - a space where millions of readers discover, discuss, and fall in love with books every single day. It's the most influential book marketing platform in recent years.</p>
+                <p>Videos tagged #BookTok have garnered over 200 billion views, making it a powerhouse for driving book sales and creating bestsellers overnight.</p>
+                <p>We understand what makes BookTok tick. We know the trends, the tropes readers love, and how to position your book for maximum visibility.</p>
+              </div>
+            </div>
+            <div class="bg-gradient-to-br from-brand/10 to-gold/20 rounded-3xl p-8">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white rounded-xl p-6 shadow-lg text-center"><div class="text-3xl font-bold text-brand">200B+</div><div class="text-sm text-gray-500">#BookTok Views</div></div>
+                <div class="bg-white rounded-xl p-6 shadow-lg text-center"><div class="text-3xl font-bold text-brand">50M+</div><div class="text-sm text-gray-500">Active Readers</div></div>
+                <div class="bg-white rounded-xl p-6 shadow-lg text-center"><div class="text-3xl font-bold text-brand">#1</div><div class="text-sm text-gray-500">Book Discovery Platform</div></div>
+                <div class="bg-white rounded-xl p-6 shadow-lg text-center"><div class="text-3xl font-bold text-brand">24/7</div><div class="text-sm text-gray-500">Global Reach</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-display font-bold text-brand mb-4">Our Promotion Services</h2>
+          </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+              <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-6"><svg class="w-7 h-7 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
+              <h3 class="text-xl font-semibold text-brand mb-3">BookTok Strategy</h3>
+              <p class="text-gray-600">Custom content plans with targeted hashtag strategies.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+              <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-6"><svg class="w-7 h-7 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
+              <h3 class="text-xl font-semibold text-brand mb-3">Reader Discovery</h3>
+              <p class="text-gray-600">Connect with readers actively searching for your genre.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+              <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-6"><svg class="w-7 h-7 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></div>
+              <h3 class="text-xl font-semibold text-brand mb-3">Book Trailers</h3>
+              <p class="text-gray-600">Captivating video content that encourages viral sharing.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+              <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-6"><svg class="w-7 h-7 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
+              <h3 class="text-xl font-semibold text-brand mb-3">Community Building</h3>
+              <p class="text-gray-600">Build genuine relationships with loyal fans and advocates.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+              <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-6"><svg class="w-7 h-7 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg></div>
+              <h3 class="text-xl font-semibold text-brand mb-3">Influencer Outreach</h3>
+              <p class="text-gray-600">Connect with BookTok influencers and reviewers.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+              <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-6"><svg class="w-7 h-7 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
+              <h3 class="text-xl font-semibold text-brand mb-3">Sustainable Visibility</h3>
+              <p class="text-gray-600">Long-term momentum beyond launch week.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20 bg-gradient-to-b from-brand to-brand-dark">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-white mb-6">Ready to Go Viral on BookTok?</h2>
+          <a href="#" onclick="showPage('contact')" class="inline-flex items-center justify-center px-8 py-4 bg-gold hover:bg-gold-light text-brand font-semibold text-lg rounded-full shadow-xl transition-all hover:scale-105">Start Your Campaign <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
+      </section>
+    </div>
+
+    <!-- PUBLISHING PAGE -->
+    <div id="page-publishing" class="page">
+      <section class="relative py-32 bg-gradient-to-br from-brand via-brand-light to-brand overflow-hidden">
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div class="w-20 h-20 rounded-full bg-gold flex items-center justify-center mx-auto mb-8">
+            <svg class="w-10 h-10 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white mb-6">Publishing <span class="text-gold-gradient">Services</span></h1>
+          <p class="text-xl sm:text-2xl text-white/90 max-w-3xl mx-auto">From manuscript to market - professional publishing support for every step of your journey</p>
+        </div>
+      </section>
+
+      <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 class="text-3xl sm:text-4xl font-display font-bold text-brand mb-6">Your Publishing Partner</h2>
+              <div class="space-y-4 text-gray-600 leading-relaxed">
+                <p>Navigating the publishing world can be overwhelming. Having the right support makes all the difference between a manuscript and a successful book.</p>
+                <p>At Green Marbles, we provide comprehensive publishing services that guide you through every stage - from polishing your manuscript to getting your book into readers' hands worldwide.</p>
+                <p>Our team of editors, designers, and publishing experts work together to transform your vision into a professionally published book.</p>
+              </div>
+            </div>
+            <div class="bg-gradient-to-br from-brand/10 to-gold/20 rounded-3xl p-8">
+              <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=500&h=400&fit=crop" alt="Publishing" class="rounded-2xl shadow-xl w-full">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-display font-bold text-brand mb-4">What We Offer</h2>
+          </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+              <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-6"><svg class="w-7 h-7 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></div>
+              <h3 class="text-xl font-semibold text-brand mb-3">Editing Services</h3>
+              <p class="text-gray-600">Developmental editing, line editing, and proofreading to perfection.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+              <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-6"><svg class="w-7 h-7 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
+              <h3 class="text-xl font-semibold text-brand mb-3">Cover Design</h3>
+              <p class="text-gray-600">Stunning, market-ready cover designs that attract readers.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+              <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-6"><svg class="w-7 h-7 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
+              <h3 class="text-xl font-semibold text-brand mb-3">Formatting</h3>
+              <p class="text-gray-600">Professional formatting for print and e-book formats.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+              <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-6"><svg class="w-7 h-7 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
+              <h3 class="text-xl font-semibold text-brand mb-3">Distribution</h3>
+              <p class="text-gray-600">Worldwide availability on Amazon, Barnes & Noble, Apple Books, and more.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+              <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-6"><svg class="w-7 h-7 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+              <h3 class="text-xl font-semibold text-brand mb-3">ISBN & Metadata</h3>
+              <p class="text-gray-600">ISBN registration and optimized metadata for discoverability.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+              <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-6"><svg class="w-7 h-7 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
+              <h3 class="text-xl font-semibold text-brand mb-3">Launch Planning</h3>
+              <p class="text-gray-600">Strategic release timing and pre-order coordination.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20 bg-brand">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-display font-bold text-white mb-4">Publishing Packages</h2>
+          </div>
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+              <h3 class="text-xl font-semibold text-white mb-2">Essential</h3>
+              <p class="text-white/70 text-sm mb-6">Basic publishing support</p>
+              <ul class="space-y-3 mb-8 text-white/80 text-sm">
+                <li>✓ Proofreading</li>
+                <li>✓ Basic Formatting</li>
+                <li>✓ ISBN Assignment</li>
+                <li>✓ Distribution Setup</li>
+              </ul>
+              <a href="#" onclick="showPage('contact')" class="block w-full text-center px-6 py-3 border-2 border-gold text-gold hover:bg-gold hover:text-brand font-semibold rounded-lg transition-all">Get Quote</a>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-2xl relative transform scale-105">
+              <div class="absolute top-0 right-0 bg-gold text-brand text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">POPULAR</div>
+              <h3 class="text-xl font-semibold text-brand mb-2">Professional</h3>
+              <p class="text-gray-600 text-sm mb-6">Complete publishing for serious authors</p>
+              <ul class="space-y-3 mb-8 text-gray-700 text-sm">
+                <li>✓ Line Editing</li>
+                <li>✓ Custom Cover Design</li>
+                <li>✓ Print + eBook Formatting</li>
+                <li>✓ ISBN + Copyright</li>
+                <li>✓ Global Distribution</li>
+              </ul>
+              <a href="#" onclick="showPage('contact')" class="block w-full text-center px-6 py-3 bg-brand hover:bg-brand-dark text-white font-semibold rounded-lg transition-all">Get Quote</a>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+              <h3 class="text-xl font-semibold text-white mb-2">Premium</h3>
+              <p class="text-white/70 text-sm mb-6">Full-service with promotion</p>
+              <ul class="space-y-3 mb-8 text-white/80 text-sm">
+                <li>✓ Developmental Editing</li>
+                <li>✓ Premium Cover Design</li>
+                <li>✓ All Professional Features</li>
+                <li>✓ BookTok Promotion</li>
+                <li>✓ Launch Coordination</li>
+              </ul>
+              <a href="#" onclick="showPage('contact')" class="block w-full text-center px-6 py-3 border-2 border-gold text-gold hover:bg-gold hover:text-brand font-semibold rounded-lg transition-all">Get Quote</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20 bg-gradient-to-b from-brand to-brand-dark">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-white mb-6">Ready to Publish Your Book?</h2>
+          <a href="#" onclick="showPage('contact')" class="inline-flex items-center justify-center px-8 py-4 bg-gold hover:bg-gold-light text-brand font-semibold text-lg rounded-full shadow-xl transition-all hover:scale-105">Start Publishing <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="page-about" class="page">
+      <section class="relative py-32 bg-gradient-to-br from-brand via-brand-light to-brand overflow-hidden">
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white mb-6">About <span class="text-gold-gradient">Green Marbles</span></h1>
+          <p class="text-xl sm:text-2xl text-white/90 max-w-3xl mx-auto">Your trusted partner for BookTok promotion and professional book publishing</p>
+        </div>
+      </section>
+
+      <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 class="text-3xl sm:text-4xl font-display font-bold text-brand mb-6">Our Story</h2>
+              <div class="space-y-4 text-gray-600 leading-relaxed">
+                <p>Green Marbles was born from a simple belief: every book deserves to find its readers. What started as helping author friends navigate the BookTok landscape evolved into a comprehensive service.</p>
+                <p>As we grew, we recognized that authors needed more than just promotion - they needed a partner who could guide them through every step of the publishing journey.</p>
+                <p>Today, we offer a complete solution for authors: professional publishing services combined with strategic promotion that connects books with readers who will love them.</p>
+              </div>
+            </div>
+            <div class="bg-gradient-to-br from-brand/10 to-gold/20 rounded-3xl p-8">
+              <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=500&h=400&fit=crop" alt="Our Story" class="rounded-2xl shadow-xl w-full">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div class="w-16 h-16 rounded-full bg-gold flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-brand mb-6">Our Mission</h2>
+          <p class="text-xl text-gray-600 leading-relaxed">To empower authors with comprehensive publishing support and strategic promotion that connects their stories with readers who will love them. Every book deserves to find its audience.</p>
+        </div>
+      </section>
+
+      <section class="py-20 bg-gradient-to-b from-brand to-brand-dark">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-white mb-6">Ready to Start Your Journey?</h2>
+          <a href="#" onclick="showPage('contact')" class="inline-flex items-center justify-center px-8 py-4 bg-gold hover:bg-gold-light text-brand font-semibold text-lg rounded-full shadow-xl transition-all hover:scale-105">Get Started Today <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
+      </section>
+    </div>
+
+    <!-- PORTFOLIO PAGE -->
+    <div id="page-portfolio" class="page">
+      <section class="relative py-32 bg-gradient-to-br from-brand via-brand-light to-brand overflow-hidden">
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white mb-6">Our <span class="text-gold-gradient">Portfolio</span></h1>
+          <p class="text-xl sm:text-2xl text-white/90 max-w-3xl mx-auto">Success stories from authors who trusted us with their books</p>
+        </div>
+      </section>
+
+      <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-display font-bold text-brand mb-4">Featured Success Stories</h2>
+          </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+              <div class="h-48 bg-gradient-to-br from-brand to-brand-light flex items-center justify-center">
+                <svg class="w-20 h-20 text-white/30" fill="currentColor" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+              </div>
+              <div class="p-6">
+                <span class="text-xs bg-gold/20 text-gold px-2 py-1 rounded-full font-medium">Romance</span>
+                <h3 class="text-lg font-semibold text-brand mt-3 mb-2">Debut Romance Novel</h3>
+                <p class="text-gray-600 text-sm mb-4">"My book went from 5 reviews to 500+ in three months. The BookTok strategy was exactly what I needed."</p>
+                <div class="flex items-center gap-2 text-brand font-semibold"><span>340% Sales Increase</span></div>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+              <div class="h-48 bg-gradient-to-br from-brand to-brand-light flex items-center justify-center">
+                <svg class="w-20 h-20 text-white/30" fill="currentColor" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+              </div>
+              <div class="p-6">
+                <span class="text-xs bg-gold/20 text-gold px-2 py-1 rounded-full font-medium">Fantasy</span>
+                <h3 class="text-lg font-semibold text-brand mt-3 mb-2">Epic Fantasy Series</h3>
+                <p class="text-gray-600 text-sm mb-4">"Green Marbles helped me launch my entire series. The promotion kept building momentum across all three books."</p>
+                <div class="flex items-center gap-2 text-brand font-semibold"><span>3-Book Series Launch</span></div>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+              <div class="h-48 bg-gradient-to-br from-brand to-brand-light flex items-center justify-center">
+                <svg class="w-20 h-20 text-white/30" fill="currentColor" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+              </div>
+              <div class="p-6">
+                <span class="text-xs bg-gold/20 text-gold px-2 py-1 rounded-full font-medium">Thriller</span>
+                <h3 class="text-lg font-semibold text-brand mt-3 mb-2">Psychological Thriller</h3>
+                <p class="text-gray-600 text-sm mb-4">"From complete unknown to BookTok trending. The targeted reader discovery approach really works."</p>
+                <div class="flex items-center gap-2 text-brand font-semibold"><span>Trending on BookTok</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20 bg-gradient-to-b from-brand to-brand-dark">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-white mb-6">Ready to Be Our Next Success Story?</h2>
+          <a href="#" onclick="showPage('contact')" class="inline-flex items-center justify-center px-8 py-4 bg-gold hover:bg-gold-light text-brand font-semibold text-lg rounded-full shadow-xl transition-all hover:scale-105">Start Your Journey <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
+      </section>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="page-contact" class="page">
+      <section class="relative py-32 bg-gradient-to-br from-brand via-brand-light to-brand overflow-hidden">
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white mb-6">Get In <span class="text-gold-gradient">Touch</span></h1>
+          <p class="text-xl sm:text-2xl text-white/90 max-w-3xl mx-auto">Ready to start your journey? Let's discuss how we can help your book find its readers.</p>
+        </div>
+      </section>
+
+      <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid lg:grid-cols-2 gap-12">
+            <div>
+              <h2 class="text-2xl font-display font-bold text-brand mb-6">Send Us a Message</h2>
+              <form action="https://formsubmit.co/greenmarblesauthorspr@gmail.com" method="POST" class="space-y-6">
+                <input type="hidden" name="_subject" value="New inquiry from Green Marbles website">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
+                    <input type="text" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-all" placeholder="John Doe">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-all" placeholder="john@example.com">
+                  </div>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Service Interested In</label>
+                  <select name="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-all">
+                    <option value="">Select a service...</option>
+                    <option value="BookTok Promotion">BookTok Promotion</option>
+                    <option value="Publishing Services">Publishing Services</option>
+                    <option value="Both Promotion & Publishing">Both Promotion & Publishing</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Book Title (if applicable)</label>
+                  <input type="text" name="book_title" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-all" placeholder="Your book's title">
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
+                  <textarea name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-all resize-none" placeholder="Tell us about your book and what you're looking for..."></textarea>
+                </div>
+                
+                <button type="submit" class="w-full px-8 py-4 bg-gold hover:bg-gold-light text-brand font-semibold text-lg rounded-lg transition-all hover:shadow-lg">Send Message</button>
+              </form>
+            </div>
+            
+            <div>
+              <h2 class="text-2xl font-display font-bold text-brand mb-6">Contact Information</h2>
+              <div class="bg-gray-50 rounded-2xl p-8 space-y-6">
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 rounded-lg bg-brand/10 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-6 h-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                  </div>
+                  <div>
+                    <div class="font-semibold text-brand">Email</div>
+                    <a href="mailto:greenmarblesauthorspr@gmail.com" class="text-gray-600 hover:text-brand transition-colors">greenmarblesauthorspr@gmail.com</a>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 rounded-lg bg-brand/10 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-6 h-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  </div>
+                  <div>
+                    <div class="font-semibold text-brand">Response Time</div>
+                    <div class="text-gray-600">Within 24-48 hours</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-white py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8 mb-12">
+          <div class="md:col-span-2">
+            <div class="flex items-center gap-3 mb-4">
+              <img src="logo.png" alt="Green Marbles Logo" class="h-12 w-auto" onerror="this.style.display='none'">
+              <div>
+                <div class="font-display font-bold text-xl">Green Marbles</div>
+                <div class="text-gold text-sm tracking-widest uppercase">PR & Publishing</div>
+              </div>
+            </div>
+            <p class="text-white/70 max-w-md">Your trusted partner for BookTok promotion and professional publishing services. Where stories find their readers.</p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Services</h4>
+            <ul class="space-y-2 text-white/70">
+              <li><a href="#" onclick="showPage('promotion')" class="hover:text-gold transition-colors">BookTok Promotion</a></li>
+              <li><a href="#" onclick="showPage('publishing')" class="hover:text-gold transition-colors">Publishing Services</a></li>
+              <li><a href="#" onclick="showPage('contact')" class="hover:text-gold transition-colors">Consultation</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Company</h4>
+            <ul class="space-y-2 text-white/70">
+              <li><a href="#" onclick="showPage('about')" class="hover:text-gold transition-colors">About Us</a></li>
+              <li><a href="#" onclick="showPage('portfolio')" class="hover:text-gold transition-colors">Portfolio</a></li>
+              <li><a href="#" onclick="showPage('contact')" class="hover:text-gold transition-colors">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-white/10 pt-8 text-center text-white/50 text-sm">
+          <p>&copy; 2025 Green Marbles PR & Publishing. All rights reserved.</p>
+          <p class="mt-2 italic">"Where Stories Find Their Readers"</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const particlesContainer = document.getElementById('particles');
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 4 + 's';
+        particle.style.animationDuration = (3 + Math.random() * 3) + 's';
+        particlesContainer.appendChild(particle);
+      }
+      
+      setTimeout(function() {
+        const loadingScreen = document.getElementById('loading-screen');
+        const mainContent = document.getElementById('main-content');
+        loadingScreen.classList.add('fade-out');
+        mainContent.style.opacity = '1';
+      }, 2500);
+    });
+    
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => { page.classList.remove('active'); });
+      const targetPage = document.getElementById('page-' + pageId);
+      if (targetPage) {
+        targetPage.classList.add('active');
+        window.scrollTo(0, 0);
+      }
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('text-brand', 'bg-brand/10');
+        link.classList.add('text-gray-600', 'hover:text-brand', 'hover:bg-gray-100');
+      });
+      const activeLink = document.querySelector('.nav-link[data-page="' + pageId + '"]');
+      if (activeLink) {
+        activeLink.classList.remove('text-gray-600', 'hover:text-brand', 'hover:bg-gray-100');
+        activeLink.classList.add('text-brand', 'bg-brand/10');
+      }
+      return false;
+    }
+    
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
+      mobileMenu.classList.toggle('hidden');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const homeLink = document.querySelector('.nav-link[data-page="home"]');
+      if (homeLink) {
+        homeLink.classList.remove('text-gray-600', 'hover:text-brand', 'hover:bg-gray-100');
+        homeLink.classList.add('text-brand', 'bg-brand/10');
+      }
+    });
+  </script>
+</body>
+</html>
